@@ -1,16 +1,16 @@
-import ReactQueryProvider from "../lib/react-query-provider";
+// app/layout.js
 import "./globals.css";
-
-export const metadata = {
-  title: "Brew-Bite Cafe",
-  description: "Order your favorite coffee online",
-};
+import Navbar from "@/components/Navbar";
+import ReactQueryProvider from "@/lib/react-query-provider";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+      <body className="bg-gray-100 text-gray-900">
+        <ReactQueryProvider>
+          <Navbar />
+          <main>{children}</main>
+        </ReactQueryProvider>
       </body>
     </html>
   );

@@ -1,7 +1,9 @@
 // app/layout.js
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import StoreToaster from "@/components/StoreToaster";
 import ReactQueryProvider from "@/lib/react-query-provider";
+import { CartHydrator } from "@/store/CartHydrator";
 
 export default function RootLayout({ children }) {
   return (
@@ -10,6 +12,8 @@ export default function RootLayout({ children }) {
         <ReactQueryProvider>
           <Navbar />
           <main>{children}</main>
+          <CartHydrator />
+          <StoreToaster />
         </ReactQueryProvider>
       </body>
     </html>

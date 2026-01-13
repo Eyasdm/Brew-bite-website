@@ -1,5 +1,15 @@
-import { Link } from "lucide-react";
-import { Mail, Phone, Globe } from "lucide-react";
+"use client";
+
+import Link from "next/link";
+import {
+  Facebook,
+  Globe,
+  Instagram,
+  Mail,
+  Phone,
+  Twitter,
+  Youtube,
+} from "lucide-react";
 import CoffeeLogo from "./icons/CoffeeLogo";
 
 export function Left() {
@@ -38,8 +48,8 @@ export function Center() {
           </Link>
         </li>
         <li>
-          <Link href="/order" className="hover:text-gray-900">
-            Order
+          <Link href="/cart" className="hover:text-gray-900">
+            Cart
           </Link>
         </li>
       </ul>

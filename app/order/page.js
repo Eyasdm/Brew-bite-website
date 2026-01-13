@@ -1,12 +1,5 @@
-import MenuFooter from "@/components/MenuFooter";
-
 function page() {
-  return (
-    <div>
-      <p>Order</p>
-      <MenuFooter />
-    </div>
-  );
+  return <div>Order</div>;
 }
 
 export default page;

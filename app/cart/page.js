@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 
 import EmptyCart from "@/components/EmptyCart";
 import { CartItem, SummaryRow } from "@/components/CartComponents";
+import { Loader } from "@/components/ui/loader";
 
 export default function Cart() {
   /* ================= Hydration Safe ================= */
@@ -150,7 +151,7 @@ export default function Cart() {
                 onClick={handlePlaceOrder}
                 className="w-full rounded-full bg-orange-500"
               >
-                {isLoading ? "Placing Order..." : "Place Order"}
+                {isLoading ? <Loader /> : "Place Order"}
               </Button>
             </CardContent>
           </Card>

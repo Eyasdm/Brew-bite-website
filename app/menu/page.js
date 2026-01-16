@@ -4,13 +4,14 @@ import CategoryFilters from "@/components/CatogeryFilters";
 import MenuCard from "@/components/MenuCard";
 import MenuFooter from "@/components/MenuFooter";
 import { SearchBar } from "@/components/SearchBar";
+import { Loader } from "@/components/ui/loader";
 import { useMenuItems } from "@/hooks/useMenuItems";
 
 export default function MenuPage() {
   const { data, isLoading, isError } = useMenuItems();
 
   if (isLoading) {
-    return <p className="text-center mt-20">Loading menu...</p>;
+    return <Loader />;
   }
 
   if (isError) {

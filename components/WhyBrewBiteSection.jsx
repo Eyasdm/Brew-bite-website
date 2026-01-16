@@ -17,25 +17,25 @@ export default function WhyBrewBiteSection() {
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <WhyCard
-          icon={IconCoffee}
+          icon={<IconCoffee />}
           title="Quality Beans"
           description="Premium beans brewed to deliver rich and consistent flavor."
         />
 
         <WhyCard
-          icon={IconBolt}
+          icon={<IconBolt />}
           title="Fast Service"
           description="Quick preparation and fast delivery every time."
         />
 
         <WhyCard
-          icon={IconMapPin}
+          icon={<IconMapPin />}
           title="Local Favorite"
           description="Loved by the community and crafted with care."
         />
 
         <WhyCard
-          icon={IconDeviceMobile}
+          icon={<IconDeviceMobile />}
           title="Easy Ordering"
           description="Order your favorite drinks easily in just a few clicks."
         />

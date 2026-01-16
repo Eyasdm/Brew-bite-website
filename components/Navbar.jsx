@@ -22,7 +22,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-2">
           {/* <Coffee className="h-6 w-6 text-gray-900" /> */}
           <CoffeeLogo className=" text-gray-900" />
-          <span className="font-semibold text-lg text-gray-900">
+          <span className="hidden sm:inline  font-semibold text-lg text-gray-900">
             Brew-Bite Cafe
           </span>
         </Link>

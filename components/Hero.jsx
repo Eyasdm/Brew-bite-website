@@ -25,12 +25,12 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           {/* ================= LEFT CONTENT ================= */}
           <div className="space-y-6">
-            <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
+            <h1 className="text-2xl lg:text-5xl font-bold leading-tight">
               Crafted Coffee, <br />
               Delivered to Your Door.
             </h1>
 
-            <p className="text-gray-600 max-w-md">
+            <p className="text-gray-800 sm:text-gray-600 max-w-sm sm:max-w-md">
               Order your favorite brew and bites online. Quick, easy, and
               delicious.
             </p>

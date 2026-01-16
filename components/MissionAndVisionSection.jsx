@@ -14,25 +14,25 @@ export default function MissionAndVisionSection() {
       {/* Cards */}
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         <WhyCard
-          icon={Heart}
+          icon={<Heart />}
           title="Our Mission"
           description="To serve exceptional coffee crafted with care, while creating a welcoming space where community and comfort come first."
         />
 
         <WhyCard
-          icon={Eye}
+          icon={<Eye />}
           title="Our Vision"
           description="To become a local favorite café where every visit feels familiar, inspiring moments of connection and calm."
         />
 
         <WhyCard
-          icon={Leaf}
+          icon={<Leaf />}
           title="Our Values"
           description="We believe in quality, authenticity, and genuine human connection in everything we brew and serve."
         />
 
         <WhyCard
-          icon={Recycle}
+          icon={<Recycle />}
           title="Sustainability"
           description="Committed to responsible sourcing, eco-friendly practices, and supporting a more sustainable future."
         />

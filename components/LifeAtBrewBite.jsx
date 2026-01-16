@@ -11,19 +11,19 @@ export default function LifeAtBrewBite() {
 
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         <LifeCard
-          icon={Coffee}
+          icon={<Coffee />}
           title="Slow Mornings"
           description="Calm mornings filled with fresh coffee aromas, soft light, and a peaceful start to the day."
         />
 
         <LifeCard
-          icon={Users}
+          icon={<Users />}
           title="Shared Moments"
           description="A place where conversations flow naturally — between friends, families, and familiar faces."
         />
 
         <LifeCard
-          icon={Leaf}
+          icon={<Leaf />}
           title="Comfort & Calm"
           description="Warm interiors, natural elements, and a welcoming atmosphere designed to help you slow down."
         />
@@ -32,11 +32,11 @@ export default function LifeAtBrewBite() {
   );
 }
 
-function LifeCard({ icon: Icon, title, description }) {
+function LifeCard({ icon, title, description }) {
   return (
     <div className="text-center space-y-4">
-      <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full bg-orange-100">
-        <Icon size={24} stroke={2} className="text-orange-500" />
+      <div className="mx-auto w-12 h-12 flex items-center justify-center rounded-full bg-orange-100 text-orange-500">
+        {icon}
       </div>
 
       <h3 className="font-medium text-gray-900">{title}</h3>

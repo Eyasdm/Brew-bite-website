@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Loader } from "@/components/ui/loader";
-import OrderSuccessClient from "./order-success-client";
+import OrderSuccessClient from "./OrderSuccessClient";
 
 export default function OrderSuccessPage() {
   return (

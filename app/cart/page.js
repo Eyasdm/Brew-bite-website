@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCartStore } from "@/store/cartStore";
 import { useCreateOrder } from "@/hooks/useCreateOrder";
+import toast from "react-hot-toast";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,7 @@ import EmptyCart from "@/components/EmptyCart";
 import { CartItem, SummaryRow } from "@/components/CartComponents";
 import { Loader } from "@/components/ui/loader";
 
-export default function Cart() {
+export default function CartPage() {
   /* ================= Hydration Safe ================= */
   const [mounted, setMounted] = useState(false);
 
@@ -40,8 +41,12 @@ export default function Cart() {
   const { placeOrder, isLoading } = useCreateOrder();
 
   const handlePlaceOrder = () => {
-    if (!name || !phone) {
-      alert("Please enter your name and phone number");
+    if (!name.trim()) {
+      toast.error("Please enter your name");
+      return;
+    }
+    if (!phone.trim()) {
+      toast.error("Please enter your phone number");
       return;
     }
 

@@ -52,7 +52,6 @@ function SubCategoryFilters() {
 
     food: [
       { id: "all", label: "All" },
-
       { id: "bakery", label: "Bakery" },
       { id: "dessert", label: "Dessert" },
     ],

@@ -3,7 +3,7 @@ import HomeFooter from "@/components/HomeFooter";
 import LifeAtBrewBite from "@/components/LifeAtBrewBite";
 import MissionAndVisionSection from "@/components/MissionAndVisionSection";
 
-function page() {
+export default function AboutPage() {
   return (
     <div className=" mx-auto px-6 ">
       <CafeStorySection />
@@ -13,5 +13,3 @@ function page() {
     </div>
   );
 }
-
-export default page;

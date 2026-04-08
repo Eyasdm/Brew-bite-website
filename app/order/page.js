@@ -1,5 +1,5 @@
-function page() {
-  return <div>Order</div>;
-}
+import { redirect } from "next/navigation";
 
-export default page;
+export default function OrderPage() {
+  redirect("/cart");
+}

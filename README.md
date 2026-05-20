@@ -2,13 +2,17 @@
 
 > A modern, full-stack cafe ordering web app — browse the menu, add to cart, and place pickup or delivery orders in seconds.
 
-![Brew-Bite Hero](./public/hero-desktop.jpeg)
-
 ---
 
 ## 🌐 Live Demo
 
-🔗 **[brew-bite.vercel.app](https://brewbite.vercel.app)** ← _replace with your actual URL_
+🔗 **[brewbite.netlify.app](https://brewbite.netlify.app)**
+
+---
+
+## 📸 Screenshots
+
+> _Visit the [live demo](https://brewbite.netlify.app) to see it in action._
 
 ---
 

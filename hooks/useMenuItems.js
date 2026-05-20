@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchMenuItems } from "@/services/menuItems";
-import { useMenuFilterStore } from "@/store/useMenuFilterStore";
+import { useMenuFilterStore } from "@/hooks/useMenuFilterStore";
 import { useMemo } from "react";
 
 export function useMenuItems() {

@@ -2,6 +2,7 @@
 
 import { Minus, Plus, ShoppingCart } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useCartStore } from "@/store/cartStore";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -40,7 +41,7 @@ export default function MenuCard({ item }) {
           {item.description}
         </p>
 
-        {/* Price + real availability badge */}
+        {/* Price + availability badge */}
         <div className="flex items-center justify-between mt-2">
           <span className="font-semibold text-sm">
             ${Number(item.price).toFixed(2)}
@@ -84,16 +85,16 @@ export default function MenuCard({ item }) {
                 </QtyButton>
               </div>
 
-              {/* View cart */}
+              {/* View cart — Link for client-side navigation */}
               <Button
                 variant="outline"
                 className="w-full rounded-full flex items-center gap-2"
                 asChild
               >
-                <a href="/cart">
+                <Link href="/cart">
                   <ShoppingCart size={16} />
                   View Cart
-                </a>
+                </Link>
               </Button>
             </>
           )}

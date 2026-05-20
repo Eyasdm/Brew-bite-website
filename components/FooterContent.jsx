@@ -88,35 +88,35 @@ export function Right() {
         <li className="flex items-center gap-2">
           <Mail size={16} className="text-orange-500 shrink-0" />
           <a
-            href="mailto:hello@brewbite.netlify.app"
+            href="mailto:hello@brewbite.com"
             className="hover:text-gray-900 transition-colors"
           >
-            hello@brewbite.netlify.app
+            hello@brewbite.com
           </a>
         </li>
         <li className="flex items-center gap-2">
           <Phone size={16} className="text-orange-500 shrink-0" />
           <a
-            href="tel:+16208557290"
+            href="tel:+10000000000"
             className="hover:text-gray-900 transition-colors"
           >
-            +1 (620) 855-7290
+            +1 (000) 000-0000
           </a>
         </li>
         <li className="flex items-center gap-2">
           <Globe size={16} className="text-orange-500 shrink-0" />
           <a
-            href="https://brewbite.netlify.app"
+            href="https://github.com/Eyasdm/brew-bite-website"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-900 transition-colors"
           >
-            brewbite.netlify.app
+            github.com/Eyasdm/brew-bite-website
           </a>
         </li>
       </ul>
 
-      {/* Social icons — proper <a> tags with aria-labels */}
+      {/* Social icons */}
       <div className="flex gap-3 mt-6">
         {socialLinks.map(({ Icon, href, label }) => (
           <a

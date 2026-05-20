@@ -88,10 +88,10 @@ export function Right() {
         <li className="flex items-center gap-2">
           <Mail size={16} className="text-orange-500 shrink-0" />
           <a
-            href="mailto:hello@brewbite.cafe"
+            href="mailto:hello@brewbite.netlify.app"
             className="hover:text-gray-900 transition-colors"
           >
-            hello@brewbite.cafe
+            hello@brewbite.netlify.app
           </a>
         </li>
         <li className="flex items-center gap-2">
@@ -106,12 +106,12 @@ export function Right() {
         <li className="flex items-center gap-2">
           <Globe size={16} className="text-orange-500 shrink-0" />
           <a
-            href="https://brewbite.cafe"
+            href="https://brewbite.netlify.app"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-gray-900 transition-colors"
           >
-            brewbite.cafe
+            brewbite.netlify.app
           </a>
         </li>
       </ul>

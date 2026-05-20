@@ -1,6 +1,7 @@
 "use client";
 
 import { Minus, Plus, Trash2 } from "lucide-react";
+import Image from "next/image";
 import { QtyButton } from "./QtyButton";
 import { useCartStore } from "@/store/cartStore";
 
@@ -16,10 +17,12 @@ export function CartItem({ id, image_url, name, price, quantity }) {
       <div className="flex items-center gap-4">
         {/* Thumbnail */}
         <div className="relative w-20 h-20 rounded-lg overflow-hidden shrink-0 bg-gray-100">
-          <img
+          <Image
             src={image_url}
             alt={name}
-            className="w-full h-full object-cover"
+            fill
+            sizes="80px"
+            className="object-cover"
           />
         </div>
 

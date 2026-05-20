@@ -48,8 +48,13 @@ export default function CartPage() {
       toast.error("Please enter your name");
       return;
     }
+    const phoneRegex = /^[\d\s\-+()]{7,15}$/;
     if (!phone.trim()) {
       toast.error("Please enter your phone number");
+      return;
+    }
+    if (!phoneRegex.test(phone.trim())) {
+      toast.error("Please enter a valid phone number");
       return;
     }
 

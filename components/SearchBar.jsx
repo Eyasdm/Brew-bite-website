@@ -1,7 +1,7 @@
 "use client";
 
 import { Search, X } from "lucide-react";
-import { useMenuFilterStore } from "@/store/useMenuFilterStore";
+import { useMenuFilterStore } from "@/hooks/useMenuFilterStore";
 
 export function SearchBar() {
   const search = useMenuFilterStore((s) => s.search);

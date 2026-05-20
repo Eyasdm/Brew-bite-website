@@ -6,7 +6,7 @@ import MenuFooter from "@/components/MenuFooter";
 import { SearchBar } from "@/components/SearchBar";
 import { Loader } from "@/components/ui/loader";
 import { useMenuItems } from "@/hooks/useMenuItems";
-import { useMenuFilterStore } from "@/store/useMenuFilterStore";
+import { useMenuFilterStore } from "@/hooks/useMenuFilterStore";
 import { SearchX } from "lucide-react";
 
 export default function MenuPage() {

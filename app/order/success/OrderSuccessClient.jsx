@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 
@@ -122,12 +123,14 @@ export default function OrderSuccessClient() {
                 const menu = menuMap[item.menu_item_id];
                 return (
                   <div key={item.id} className="flex items-center gap-3">
-                    <div className="h-12 w-12 rounded-xl overflow-hidden border bg-muted">
+                    <div className="relative h-12 w-12 rounded-xl overflow-hidden border bg-muted shrink-0">
                       {menu?.image_url && (
-                        <img
+                        <Image
                           src={menu.image_url}
-                          alt={menu.name}
-                          className="h-full w-full object-cover"
+                          alt={menu.name ?? "Menu item"}
+                          fill
+                          sizes="48px"
+                          className="object-cover"
                         />
                       )}
                     </div>

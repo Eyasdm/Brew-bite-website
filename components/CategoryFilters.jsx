@@ -1,6 +1,6 @@
 "use client";
 
-import { useMenuFilterStore } from "@/store/useMenuFilterStore";
+import { useMenuFilterStore } from "@/hooks/useMenuFilterStore";
 import clsx from "clsx";
 
 /* =====================

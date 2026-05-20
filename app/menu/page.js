@@ -3,19 +3,18 @@
 import CategoryFilters from "@/components/CategoryFilters";
 import MenuCard from "@/components/MenuCard";
 import MenuFooter from "@/components/MenuFooter";
+import { MenuGridSkeleton } from "@/components/MenuCardSkeleton";
 import { SearchBar } from "@/components/SearchBar";
-import { Loader } from "@/components/ui/loader";
 import { useMenuItems } from "@/hooks/useMenuItems";
 import { useMenuFilterStore } from "@/hooks/useMenuFilterStore";
 import { SearchX } from "lucide-react";
 
 export default function MenuPage() {
   const { data, isLoading, isError } = useMenuItems();
-  const { search, setSearch } = useMenuFilterStore();
-
-  if (isLoading) {
-    return <Loader />;
-  }
+  // `search` drives the empty-state copy; `setSearch` is called inside
+  // <SearchBar> via the store — no need to destructure it here.
+  const search = useMenuFilterStore((s) => s.search);
+  const setSearch = useMenuFilterStore((s) => s.setSearch);
 
   if (isError) {
     return <p className="text-center mt-20">Failed to load menu.</p>;
@@ -27,7 +26,10 @@ export default function MenuPage() {
         <SearchBar />
         <CategoryFilters />
 
-        {data.length === 0 ? (
+        {isLoading ? (
+          /* ── Loading skeleton — replaces the old full-page <Loader /> ── */
+          <MenuGridSkeleton count={8} />
+        ) : data.length === 0 ? (
           /* ── Empty state ── */
           <div className="flex flex-col items-center justify-center gap-4 py-24 text-center">
             <div className="h-14 w-14 rounded-full bg-orange-100 flex items-center justify-center">

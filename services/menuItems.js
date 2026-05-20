@@ -19,6 +19,13 @@ export async function fetchMenuItems({ category, subCategory }) {
     throw new Error(error.message);
   }
 
+  // Guard against a successful response that returns no data (e.g. network
+  // proxy swallowed the body). Returning undefined here would cause TanStack
+  // Query to cache undefined and silently break downstream consumers.
+  if (data == null) {
+    throw new Error("No data returned from menu_items — possible network issue.");
+  }
+
   return data;
 }
 
@@ -34,5 +41,9 @@ export async function fetchFeaturedItems() {
 
   if (error) throw new Error(error.message);
 
-  return data ?? [];
+  if (data == null) {
+    throw new Error("No data returned from menu_items — possible network issue.");
+  }
+
+  return data;
 }

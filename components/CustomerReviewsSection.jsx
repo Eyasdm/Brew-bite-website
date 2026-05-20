@@ -5,7 +5,8 @@ import { Star } from "lucide-react";
 
 const reviews = [
   {
-    image: "/reviews/user-1.jfif",
+    image:
+      "https://ilctucufscggrvgbjwue.supabase.co/storage/v1/object/public/website-assets/reviews/user-1.jfif",
     name: "Emily Johnson",
     date: "April 2025",
     rating: 5,
@@ -13,7 +14,8 @@ const reviews = [
       "Absolutely love this place. The coffee was rich and smooth, and the delivery was faster than I expected. Will definitely be ordering again!",
   },
   {
-    image: "/reviews/user-2.jfif",
+    image:
+      "https://ilctucufscggrvgbjwue.supabase.co/storage/v1/object/public/website-assets/reviews/user-2.jfif",
     name: "Daniel Harris",
     date: "March 2025",
     rating: 5,

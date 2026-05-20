@@ -7,7 +7,7 @@ export default function CafeStorySection() {
         {/* Image */}
         <div className="relative w-full aspect-[4/5] rounded-2xl overflow-hidden h-96">
           <Image
-            src="/about/cafe-story-2.png"
+            src="https://ilctucufscggrvgbjwue.supabase.co/storage/v1/object/public/website-assets/about/cafe-story-2.png"
             alt="Brew-Bite Cafe Interior"
             fill
             className="object-cover"

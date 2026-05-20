@@ -5,7 +5,10 @@ export default function Hero() {
     <section className="max-w-7xl mx-auto px-6 mb-24">
       <div
         className="relative w-full h-[300px] lg:h-[420px] rounded-[24px] overflow-hidden bg-cover bg-center bg-no-repeat shadow-sm"
-        style={{ backgroundImage: "url('/hero-desktop.jpeg')" }}
+        style={{
+          backgroundImage:
+            "url('https://ilctucufscggrvgbjwue.supabase.co/storage/v1/object/public/website-assets/hero/hero-desktop.jpeg')",
+        }}
       >
         {/* Dark overlay — ensures text is always readable over any photo */}
         <div className="absolute inset-0 bg-black/50 rounded-[24px]" />

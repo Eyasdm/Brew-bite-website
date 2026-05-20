@@ -33,22 +33,22 @@ export function Center() {
       <h4 className="font-semibold mb-4">Quick Links</h4>
       <ul className="space-y-2 text-sm text-gray-600">
         <li>
-          <Link href="/" className="hover:text-gray-900">
+          <Link href="/" className="hover:text-gray-900 transition-colors">
             Home
           </Link>
         </li>
         <li>
-          <Link href="/menu" className="hover:text-gray-900">
+          <Link href="/menu" className="hover:text-gray-900 transition-colors">
             Menu
           </Link>
         </li>
         <li>
-          <Link href="/about" className="hover:text-gray-900">
+          <Link href="/about" className="hover:text-gray-900 transition-colors">
             About
           </Link>
         </li>
         <li>
-          <Link href="/cart" className="hover:text-gray-900">
+          <Link href="/cart" className="hover:text-gray-900 transition-colors">
             Cart
           </Link>
         </li>
@@ -57,33 +57,78 @@ export function Center() {
   );
 }
 
+const socialLinks = [
+  {
+    Icon: Facebook,
+    href: "https://facebook.com",
+    label: "Facebook",
+  },
+  {
+    Icon: Twitter,
+    href: "https://twitter.com",
+    label: "Twitter",
+  },
+  {
+    Icon: Instagram,
+    href: "https://instagram.com",
+    label: "Instagram",
+  },
+  {
+    Icon: Youtube,
+    href: "https://youtube.com",
+    label: "YouTube",
+  },
+];
+
 export function Right() {
   return (
     <div>
       <h4 className="font-semibold mb-4">Contact</h4>
       <ul className="space-y-3 text-sm text-gray-600">
         <li className="flex items-center gap-2">
-          <Mail size={16} className="text-orange-500" />
-          brewbite.com
+          <Mail size={16} className="text-orange-500 shrink-0" />
+          <a
+            href="mailto:hello@brewbite.cafe"
+            className="hover:text-gray-900 transition-colors"
+          >
+            hello@brewbite.cafe
+          </a>
         </li>
         <li className="flex items-center gap-2">
-          <Phone size={16} className="text-orange-500" />
-          620-855-7290
+          <Phone size={16} className="text-orange-500 shrink-0" />
+          <a
+            href="tel:+16208557290"
+            className="hover:text-gray-900 transition-colors"
+          >
+            +1 (620) 855-7290
+          </a>
         </li>
         <li className="flex items-center gap-2">
-          <Globe size={16} className="text-orange-500" />
-          www.bitecafe.com
+          <Globe size={16} className="text-orange-500 shrink-0" />
+          <a
+            href="https://brewbite.cafe"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-gray-900 transition-colors"
+          >
+            brewbite.cafe
+          </a>
         </li>
       </ul>
 
+      {/* Social icons — proper <a> tags with aria-labels */}
       <div className="flex gap-3 mt-6">
-        {[Facebook, Twitter, Instagram, Youtube].map((Icon, i) => (
-          <div
-            key={i}
-            className="h-9 w-9 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-500 hover:bg-orange-500 hover:text-white transition"
+        {socialLinks.map(({ Icon, href, label }) => (
+          <a
+            key={label}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            className="h-9 w-9 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-500 hover:bg-orange-500 hover:text-white transition-colors"
           >
             <Icon size={18} />
-          </div>
+          </a>
         ))}
       </div>
     </div>

@@ -1,49 +1,83 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { useFeaturedItems } from "@/hooks/useFeaturedItems";
 
 export default function FeaturedDrinksSection() {
+  const { data: items, isLoading, isError } = useFeaturedItems();
+
   return (
     <section className="max-w-7xl mx-auto px-6 space-y-6 mb-24">
-      <h2 className="text-2xl font-semibold text-gray-900">Featured Drinks</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-semibold text-gray-900">
+          Featured Drinks
+        </h2>
+        <Link
+          href="/menu"
+          className="text-sm font-medium text-orange-500 hover:text-orange-600 transition-colors"
+        >
+          View all →
+        </Link>
+      </div>
 
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-        <FeaturedDrinkCard
-          name="Mocha"
-          price="$5.00"
-          image="/featured-drinks/mocha.png"
-        />
-        <FeaturedDrinkCard
-          name="Espresso"
-          price="$2.50"
-          image="/featured-drinks/espresso.png"
-        />
-        <FeaturedDrinkCard
-          name="Iced Latte"
-          price="$4.50"
-          image="/featured-drinks/iced-latte.png"
-        />
-        <FeaturedDrinkCard
-          name="Lemo Iced Tea"
-          price="$3.50"
-          image="/featured-drinks/lemon-iced-tea.png"
-        />
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {isLoading ? (
+          /* Skeleton placeholders while loading */
+          Array.from({ length: 4 }).map((_, i) => <SkeletonCard key={i} />)
+        ) : isError || !items?.length ? (
+          /* Graceful fallback — never shows a broken page */
+          <p className="col-span-4 text-center text-sm text-gray-400 py-8">
+            Featured drinks unavailable right now.
+          </p>
+        ) : (
+          items.map((item) => <FeaturedDrinkCard key={item.id} item={item} />)
+        )}
       </div>
     </section>
   );
 }
 
-function FeaturedDrinkCard({ name, price, image }) {
+function FeaturedDrinkCard({ item }) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow max-w-72">
-      {/* Image */}
+    <Link href="/menu" className="group block">
+      <div className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow w-full">
+        {/* Image — next/image with fill inside a sized container */}
+        <div className="relative h-[180px] rounded-t-2xl overflow-hidden mx-4 mt-4 rounded-xl bg-gray-100">
+          {item.image_url ? (
+            <Image
+              src={item.image_url}
+              alt={item.name}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-gray-300 text-4xl">
+              ☕
+            </div>
+          )}
+        </div>
 
-      <div className="relative   h-[180px] rounded-2xl overflow-hidden m-4 ">
-        <Image src={image} alt={name} fill className="object-cover" />
+        {/* Content */}
+        <div className="p-4 space-y-1">
+          <h3 className="text-base font-semibold text-gray-900">{item.name}</h3>
+          <p className="text-sm text-gray-500">
+            ${Number(item.price).toFixed(2)}
+          </p>
+        </div>
       </div>
+    </Link>
+  );
+}
 
-      {/* Content */}
-      <div className="p-4 space-y-1">
-        <h3 className="text-base font-semibold text-gray-900">{name}</h3>
-        <p className="text-sm text-gray-500">{price}</p>
+function SkeletonCard() {
+  return (
+    <div className="bg-white rounded-2xl shadow-sm w-full animate-pulse">
+      <div className="h-[180px] rounded-xl m-4 bg-gray-200" />
+      <div className="p-4 space-y-2">
+        <div className="h-4 w-3/4 rounded bg-gray-200" />
+        <div className="h-3 w-1/3 rounded bg-gray-200" />
       </div>
     </div>
   );

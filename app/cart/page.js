@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import { useCartStore } from "@/store/cartStore";
 import { useCreateOrder } from "@/hooks/useCreateOrder";
 import toast from "react-hot-toast";
@@ -11,33 +11,33 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { Loader2 } from "lucide-react";
 
 import EmptyCart from "@/components/EmptyCart";
 import { CartItem, SummaryRow } from "@/components/CartComponents";
-import { Loader } from "@/components/ui/loader";
 
 export default function CartPage() {
-  /* ================= Hydration Safe ================= */
-  const [mounted, setMounted] = useState(false);
+  /* ── Hydration safe ── */
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  /* ================= Cart Store (ALWAYS CALLED) ================= */
+  /* ── Cart store ── */
   const items = useCartStore((s) => s.items);
   const totalPrice = useCartStore((s) => s.totalPrice());
 
   const tax = +(totalPrice * 0.1).toFixed(2);
   const grandTotal = (totalPrice + tax).toFixed(2);
 
-  /* ================= Form State ================= */
+  /* ── Form state ── */
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
   const [orderType, setOrderType] = useState("pickup");
 
-  /* ================= Order Mutation ================= */
+  /* ── Order mutation ── */
   const { placeOrder, isLoading } = useCreateOrder();
 
   const handlePlaceOrder = () => {
@@ -62,29 +62,33 @@ export default function CartPage() {
     });
   };
 
-  /* ================= RENDER ================= */
-  if (!mounted) {
-    return null;
-  }
+  /* ── Render ── */
+  if (!mounted) return null;
 
   if (items.length === 0) {
     return (
-      <section className="max-w-3xl mx-auto px-6 py-20 ">
+      <section className="max-w-3xl mx-auto px-6 py-20">
         <EmptyCart />
       </section>
     );
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-6 pt-6 pb-14 ">
+    <section className="max-w-7xl mx-auto px-6 pt-6 pb-14">
       <div className="grid gap-10 lg:grid-cols-3">
-        {/* Left */}
+        {/* ── Left: cart items ── */}
         <div className="lg:col-span-2 space-y-6">
           <Card className="bg-white">
             <CardHeader>
-              <CardTitle>Your Cart</CardTitle>
+              <CardTitle>
+                Your Cart{" "}
+                <span className="text-sm font-normal text-gray-400">
+                  ({items.reduce((s, i) => s + i.quantity, 0)} item
+                  {items.reduce((s, i) => s + i.quantity, 0) !== 1 ? "s" : ""})
+                </span>
+              </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-5">
+            <CardContent className="space-y-4">
               {items.map((item) => (
                 <CartItem key={item.id} {...item} />
               ))}
@@ -92,8 +96,9 @@ export default function CartPage() {
           </Card>
         </div>
 
-        {/* Right */}
+        {/* ── Right: order details + summary ── */}
         <div className="space-y-6">
+          {/* Order type */}
           <Card className="bg-white">
             <CardHeader>
               <CardTitle className="text-center">Order Type</CardTitle>
@@ -104,16 +109,17 @@ export default function CartPage() {
                 onValueChange={setOrderType}
                 className="flex justify-center gap-6"
               >
-                <Label className="flex items-center gap-2">
+                <Label className="flex items-center gap-2 cursor-pointer">
                   <RadioGroupItem value="pickup" /> Pickup
                 </Label>
-                <Label className="flex items-center gap-2">
+                <Label className="flex items-center gap-2 cursor-pointer">
                   <RadioGroupItem value="delivery" /> Delivery
                 </Label>
               </RadioGroup>
             </CardContent>
           </Card>
 
+          {/* Customer details */}
           <Card className="bg-white">
             <CardHeader>
               <CardTitle>Customer Details</CardTitle>
@@ -122,21 +128,22 @@ export default function CartPage() {
               <Input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
+                placeholder="Full name *"
               />
               <Input
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="Phone"
+                placeholder="Phone number *"
               />
               <Textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder="Notes"
+                placeholder="Special notes (optional)"
               />
             </CardContent>
           </Card>
 
+          {/* Order summary */}
           <Card className="bg-white">
             <CardHeader>
               <CardTitle>Order Summary</CardTitle>
@@ -146,17 +153,25 @@ export default function CartPage() {
                 label="Subtotal"
                 value={`$${totalPrice.toFixed(2)}`}
               />
-              <SummaryRow label="Tax" value={`$${tax}`} />
-              <div className="flex justify-between font-semibold text-lg">
+              <SummaryRow label="Tax (10%)" value={`$${tax.toFixed(2)}`} />
+              <div className="flex justify-between font-semibold text-lg border-t pt-3">
                 <span>Total</span>
                 <span>${grandTotal}</span>
               </div>
+
               <Button
                 disabled={isLoading}
                 onClick={handlePlaceOrder}
-                className="w-full rounded-full bg-orange-500"
+                className="w-full rounded-full bg-orange-500 hover:bg-orange-600 disabled:opacity-70"
               >
-                {isLoading ? <Loader /> : "Place Order"}
+                {isLoading ? (
+                  <span className="flex items-center gap-2">
+                    <Loader2 size={16} className="animate-spin" />
+                    Placing order…
+                  </span>
+                ) : (
+                  "Place Order"
+                )}
               </Button>
             </CardContent>
           </Card>

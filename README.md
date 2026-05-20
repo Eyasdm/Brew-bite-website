@@ -8,7 +8,7 @@
 
 ## 🌐 Live Demo
 
-🔗 **[brew-bite.vercel.app](https://brew-bite.vercel.app)** ← _replace with your actual URL_
+🔗 **[brew-bite.vercel.app](https://brewbite.vercel.app)** ← _replace with your actual URL_
 
 ---
 
@@ -27,16 +27,16 @@
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | [Next.js 15](https://nextjs.org) (App Router) |
-| UI | [Tailwind CSS](https://tailwindcss.com), [Radix UI](https://www.radix-ui.com), [shadcn/ui](https://ui.shadcn.com) |
-| State | [Zustand](https://zustand-demo.pmnd.rs) |
-| Data fetching | [TanStack Query (React Query)](https://tanstack.com/query) |
-| Backend / DB | [Supabase](https://supabase.com) (PostgreSQL) |
-| Icons | [Lucide React](https://lucide.dev), [Tabler Icons](https://tabler.io/icons) |
-| Notifications | [React Hot Toast](https://react-hot-toast.com) |
-| QR Code | [qrcode.react](https://github.com/zpao/qrcode.react) |
+| Layer         | Technology                                                                                                        |
+| ------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Framework     | [Next.js 16](https://nextjs.org) (App Router)                                                                     |
+| UI            | [Tailwind CSS](https://tailwindcss.com), [Radix UI](https://www.radix-ui.com), [shadcn/ui](https://ui.shadcn.com) |
+| State         | [Zustand](https://zustand-demo.pmnd.rs)                                                                           |
+| Data fetching | [TanStack Query (React Query)](https://tanstack.com/query)                                                        |
+| Backend / DB  | [Supabase](https://supabase.com) (PostgreSQL)                                                                     |
+| Icons         | [Lucide React](https://lucide.dev), [Tabler Icons](https://tabler.io/icons)                                       |
+| Notifications | [React Hot Toast](https://react-hot-toast.com)                                                                    |
+| QR Code       | [qrcode.react](https://github.com/zpao/qrcode.react)                                                              |
 
 ---
 

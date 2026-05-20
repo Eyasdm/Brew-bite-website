@@ -14,7 +14,7 @@ export const useCartStore = create((set, get) => ({
 
     const updated = existing
       ? items.map((i) =>
-          i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i
+          i.id === product.id ? { ...i, quantity: i.quantity + 1 } : i,
         )
       : [...items, { ...product, quantity: 1 }];
 
@@ -31,9 +31,16 @@ export const useCartStore = create((set, get) => ({
       item.quantity === 1
         ? items.filter((i) => i.id !== id)
         : items.map((i) =>
-            i.id === id ? { ...i, quantity: i.quantity - 1 } : i
+            i.id === id ? { ...i, quantity: i.quantity - 1 } : i,
           );
 
+    set({ items: updated });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+  },
+
+  // Removes an item entirely regardless of quantity
+  removeItem: (id) => {
+    const updated = get().items.filter((i) => i.id !== id);
     set({ items: updated });
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
   },
@@ -42,6 +49,7 @@ export const useCartStore = create((set, get) => ({
     set({ items: [] });
     localStorage.removeItem(STORAGE_KEY);
   },
+
   getItemQty: (id) => get().items.find((i) => i.id === id)?.quantity || 0,
 
   totalPrice: () => get().items.reduce((t, i) => t + i.price * i.quantity, 0),

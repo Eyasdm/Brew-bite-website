@@ -1,11 +1,10 @@
 "use client";
 
 import { Minus, Plus, ShoppingCart } from "lucide-react";
+import Image from "next/image";
 import { useCartStore } from "@/store/cartStore";
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { QtyButton } from "./QtyButton";
 
 export default function MenuCard({ item }) {
@@ -16,13 +15,21 @@ export default function MenuCard({ item }) {
   return (
     <Card className="rounded-2xl shadow-sm">
       <CardContent className="p-4 flex flex-col">
-        {/* Image */}
-        <div className="aspect-[4/3] rounded-xl overflow-hidden mb-3 bg-gray-100">
-          <img
-            src={item.image_url}
-            alt={item.name}
-            className="w-full h-full object-cover"
-          />
+        {/* Image — next/image with proper sizing */}
+        <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-3 bg-gray-100">
+          {item.image_url ? (
+            <Image
+              src={item.image_url}
+              alt={item.name}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              className="object-cover"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-gray-300 text-4xl">
+              ☕
+            </div>
+          )}
         </div>
 
         {/* Name */}
@@ -33,12 +40,21 @@ export default function MenuCard({ item }) {
           {item.description}
         </p>
 
-        {/* Price */}
+        {/* Price + real availability badge */}
         <div className="flex items-center justify-between mt-2">
-          <span className="font-semibold text-sm">${item.price}</span>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-100 text-green-700">
-            Available
+          <span className="font-semibold text-sm">
+            ${Number(item.price).toFixed(2)}
           </span>
+
+          {item.is_available ? (
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-100 text-green-700">
+              Available
+            </span>
+          ) : (
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-400">
+              Unavailable
+            </span>
+          )}
         </div>
 
         {/* Actions */}
@@ -46,7 +62,8 @@ export default function MenuCard({ item }) {
           {qty === 0 ? (
             <Button
               onClick={() => addItem(item)}
-              className="w-full rounded-full bg-orange-500 hover:bg-orange-600"
+              disabled={!item.is_available}
+              className="w-full rounded-full bg-orange-500 hover:bg-orange-600 disabled:opacity-50"
             >
               Add to Cart
             </Button>

@@ -17,8 +17,8 @@ export default function CategoryFilters() {
   return (
     <div className="space-y-2">
       {/* Main Categories */}
-      <div className="flex justify-center  ">
-        <div className="flex gap-2 bg-white p-1   rounded-full shadow-sm ">
+      <div className="flex justify-center">
+        <div className="flex bg-white p-1 rounded-full shadow-sm">
           {categories.map((cat) => (
             <MainFilterButton
               key={cat.id}
@@ -49,7 +49,6 @@ function SubCategoryFilters() {
       { id: "coffee", label: "Coffee" },
       { id: "non-coffee", label: "Non Coffee" },
     ],
-
     food: [
       { id: "all", label: "All" },
       { id: "bakery", label: "Bakery" },
@@ -82,10 +81,12 @@ function MainFilterButton({ children, active, onClick }) {
     <button
       onClick={onClick}
       className={clsx(
-        "px-[4.5rem] py-2 rounded-full text-sm font-semibold transition-all",
+        // flex-1 + min-w means the pill always fills evenly regardless of
+        // how many categories exist — no more magic padding numbers
+        "flex-1 min-w-[7rem] py-2 px-6 rounded-full text-sm font-semibold transition-all",
         active
           ? "bg-orange-500 text-white shadow-md"
-          : "text-gray-700 hover:bg-gray-100"
+          : "text-gray-700 hover:bg-gray-100",
       )}
     >
       {children}
@@ -101,7 +102,7 @@ function SubFilterButton({ children, active, onClick }) {
         "px-4 py-1.5 rounded-full text-sm transition-all border",
         active
           ? "bg-orange-500 text-white border-orange-500"
-          : "bg-white text-gray-600 border-gray-200 hover:bg-gray-100"
+          : "bg-white text-gray-600 border-gray-200 hover:bg-gray-100",
       )}
     >
       {children}

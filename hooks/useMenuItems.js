@@ -19,13 +19,13 @@ export function useMenuItems() {
   // Client-side search filter — avoids a Supabase round-trip on every keystroke
   const filtered = useMemo(() => {
     if (!query.data) return [];
-    if (!search.trim()) return query.data;
+    if (!search?.trim()) return query.data;
 
     const term = search.trim().toLowerCase();
     return query.data.filter(
       (item) =>
         item.name.toLowerCase().includes(term) ||
-        (item.description && item.description.toLowerCase().includes(term))
+        (item.description && item.description.toLowerCase().includes(term)),
     );
   }, [query.data, search]);
 

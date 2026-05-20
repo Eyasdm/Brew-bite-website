@@ -36,9 +36,12 @@ export default function CartPage() {
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
   const [orderType, setOrderType] = useState("pickup");
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   /* ── Order mutation ── */
-  const { placeOrder, isLoading } = useCreateOrder();
+  const { placeOrder, isLoading } = useCreateOrder({
+    onSuccess: () => setIsRedirecting(true),
+  });
 
   const handlePlaceOrder = () => {
     if (!name.trim()) {
@@ -64,6 +67,16 @@ export default function CartPage() {
 
   /* ── Render ── */
   if (!mounted) return null;
+
+  // Show full-page loader while redirecting (after cart is cleared)
+  if (isRedirecting) {
+    return (
+      <section className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+        <Loader2 size={40} className="animate-spin text-orange-500" />
+        <p className="text-gray-500 text-sm">Redirecting to your order…</p>
+      </section>
+    );
+  }
 
   if (items.length === 0) {
     return (
@@ -160,7 +173,7 @@ export default function CartPage() {
               </div>
 
               <Button
-                disabled={isLoading}
+                disabled={isLoading || isRedirecting}
                 onClick={handlePlaceOrder}
                 className="w-full rounded-full bg-orange-500 hover:bg-orange-600 disabled:opacity-70"
               >

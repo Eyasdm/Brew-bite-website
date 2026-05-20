@@ -1,6 +1,6 @@
 "use client";
 
-import CategoryFilters from "@/components/CatogeryFilters";
+import CategoryFilters from "@/components/CategoryFilters";
 import MenuCard from "@/components/MenuCard";
 import MenuFooter from "@/components/MenuFooter";
 import { SearchBar } from "@/components/SearchBar";

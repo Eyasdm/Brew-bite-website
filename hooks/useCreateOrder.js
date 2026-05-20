@@ -6,7 +6,7 @@ import { useCartStore } from "@/store/cartStore";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-export function useCreateOrder() {
+export function useCreateOrder({ onSuccess } = {}) {
   const router = useRouter();
 
   const items = useCartStore((s) => s.items);
@@ -19,7 +19,6 @@ export function useCreateOrder() {
         throw new Error("Your cart is empty");
       }
 
-      // 1️⃣ Insert order
       const { data: order, error } = await supabase
         .from("orders")
         .insert({
@@ -36,7 +35,6 @@ export function useCreateOrder() {
 
       if (error) throw error;
 
-      // 2️⃣ Insert order items
       const orderItems = items.map((item) => ({
         order_id: order.id,
         menu_item_id: item.id,
@@ -53,16 +51,13 @@ export function useCreateOrder() {
       return order;
     },
 
-    // ✅ Success
     onSuccess: (order) => {
+      onSuccess?.(); // trigger isRedirecting before clearCart
       clearCart();
-
       toast.success(`Order ${order.order_number} placed successfully ☕`);
-
       router.push(`/order/success?order=${order.order_number}`);
     },
 
-    // ❌ Error
     onError: (error) => {
       toast.error(error?.message || "Something went wrong. Please try again.");
     },

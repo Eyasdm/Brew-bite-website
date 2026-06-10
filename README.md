@@ -113,4 +113,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-<p align="center">Built with ☕ by <a href="https://github.com/Eyasdm">Eyas</a></p>
+<p align="center">Built with ☕ by Eyas — <a href="https://github.com/Eyasdm">GitHub</a> · <a href="https://www.linkedin.com/in/eyas-mohammed/">LinkedIn</a></p>

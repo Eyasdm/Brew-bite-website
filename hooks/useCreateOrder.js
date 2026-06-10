@@ -10,7 +10,6 @@ export function useCreateOrder({ onSuccess } = {}) {
   const router = useRouter();
 
   const items = useCartStore((s) => s.items);
-  const totalPrice = useCartStore((s) => s.totalPrice());
   const clearCart = useCartStore((s) => s.clearCart);
 
   const mutation = useMutation({
@@ -19,34 +18,23 @@ export function useCreateOrder({ onSuccess } = {}) {
         throw new Error("Your cart is empty");
       }
 
+      // Prices and totals are recomputed server-side inside the create_order
+      // RPC (a single atomic transaction). The client only sends item ids and
+      // quantities — never prices — so they can't be tampered with in devtools.
       const { data: order, error } = await supabase
-        .from("orders")
-        .insert({
-          customer_name: customerName,
-          customer_phone: phone || null,
-          type: orderType,
-          source: "online",
-          status: "pending",
-          total_price: totalPrice,
-          notes: notes || null,
+        .rpc("create_order", {
+          p_customer_name: customerName,
+          p_customer_phone: phone || null,
+          p_type: orderType,
+          p_notes: notes || null,
+          p_items: items.map((item) => ({
+            menu_item_id: item.id,
+            quantity: item.quantity,
+          })),
         })
-        .select("id, order_number")
         .single();
 
       if (error) throw error;
-
-      const orderItems = items.map((item) => ({
-        order_id: order.id,
-        menu_item_id: item.id,
-        quantity: item.quantity,
-        item_price: item.price,
-      }));
-
-      const { error: itemsError } = await supabase
-        .from("order_items")
-        .insert(orderItems);
-
-      if (itemsError) throw itemsError;
 
       return order;
     },

@@ -6,7 +6,6 @@ import {
   Globe,
   Instagram,
   Mail,
-  Phone,
   Twitter,
   Youtube,
 } from "lucide-react";
@@ -92,15 +91,6 @@ export function Right() {
             className="hover:text-gray-900 transition-colors"
           >
             hello@brewbite.com
-          </a>
-        </li>
-        <li className="flex items-center gap-2">
-          <Phone size={16} className="text-orange-500 shrink-0" />
-          <a
-            href="tel:+10000000000"
-            className="hover:text-gray-900 transition-colors"
-          >
-            +1 (000) 000-0000
           </a>
         </li>
         <li className="flex items-center gap-2">

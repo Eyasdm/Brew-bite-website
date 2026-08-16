@@ -33,6 +33,7 @@
 
 | Layer         | Technology                                                                                                        |
 | ------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Language      | [TypeScript](https://www.typescriptlang.org) (strict mode)                                                       |
 | Framework     | [Next.js 16](https://nextjs.org) (App Router)                                                                     |
 | UI            | [Tailwind CSS](https://tailwindcss.com), [Radix UI](https://www.radix-ui.com), [shadcn/ui](https://ui.shadcn.com) |
 | State         | [Zustand](https://zustand-demo.pmnd.rs)                                                                           |
@@ -91,7 +92,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ```
 brew-bite-website/
 ├── app/                  # Next.js App Router pages
-│   ├── page.js           # Home page
+│   ├── page.tsx          # Home page
 │   ├── menu/             # Menu browsing page
 │   ├── cart/             # Cart & checkout page
 │   ├── about/            # About page
@@ -101,8 +102,16 @@ brew-bite-website/
 │   └── icons/            # Custom SVG icon components
 ├── hooks/                # Custom React hooks
 ├── lib/                  # Supabase client & utilities
+├── services/             # Typed Supabase data-access functions
 ├── store/                # Zustand state stores
+├── types/                # Shared domain types (DB rows, cart, etc.)
 └── public/               # Static assets
+```
+
+Type-check the project at any time with:
+
+```bash
+npm run type-check
 ```
 
 ---
